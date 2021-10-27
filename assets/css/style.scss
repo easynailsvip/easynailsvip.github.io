@@ -6,14 +6,17 @@
 @import url('/assets/css/vendor.css');
 @import url('/assets/css/site.min.css');
 
+header {
+  font-size: 1.5em;
+  font-weight: 700;
+}
 header .cs-link {
-  padding: 20px 0;
   margin: 0;
-  height: 90 px;
-  position: relative;
+  padding: 20px 0;
 }
 header a.cs-link img {
-  height: 100%;
+  height: 50px;
+  width: 388px;
 }
 
 .footer-background {
