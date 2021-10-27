@@ -2,8 +2,11 @@
 ---
 
 @import "{{ site.theme }}";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
 body {
   color: #000000;
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -15,6 +18,7 @@ a:hover, a:focus, a.active {
 
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
+  font-family: 'Raleway', sans-serif;
 }
 
 #header-wrap {
