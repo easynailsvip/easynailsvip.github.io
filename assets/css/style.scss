@@ -1,0 +1,30 @@
+---
+---
+
+@import "{{ site.theme }}";
+body {
+  color: #000000;
+}
+
+a {
+  color: #ec008c;
+}
+a:hover, a:focus, a.active {
+  color: #EC008C;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000000;
+}
+
+#header-wrap {
+  background: #652C90;
+}
+
+#main-content-wrap {
+  background: #FFFFFF;
+}
+
+#footer-wrap {
+  background: #000000;
+}
