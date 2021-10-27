@@ -1,34 +1,6 @@
 ---
 ---
 
-@import "{{ site.theme }}";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-
-body {
-  color: #000000;
-  font-family: 'Raleway', sans-serif;
-}
-
-a {
-  color: #ec008c;
-}
-a:hover, a:focus, a.active {
-  color: #EC008C;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #000000;
-  font-family: 'Raleway', sans-serif;
-}
-
-#header-wrap {
-  background: #652C90;
-}
-
-#main-content-wrap {
-  background: #FFFFFF;
-}
-
-#footer-wrap {
-  background: #000000;
-}
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css');
+@import url('/assets/css/vendor.css');
