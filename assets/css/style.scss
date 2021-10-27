@@ -13,9 +13,13 @@ header {
 header .cs-link {
   margin: 0;
 }
-header a.cs-link img {
+header a.cs-link img.horizontal {
   height: 50px;
   width: 388px;
+}
+header a.cs-link img.vertical {
+  height: 50px;
+  width: 80px;
 }
 
 .footer-background {
