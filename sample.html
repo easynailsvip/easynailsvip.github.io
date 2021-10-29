@@ -4,6 +4,82 @@ layout: "default"
 
 <div id="view-home" class="container-fluid">
   <div class="container">
-    <p>Coming soon!</p>
+    <form id="sample-request-form">
+      <input name="email" type="hidden">
+      <input name="Field8" type="hidden" value="United States">
+      <div class="form-group">
+        <label for="first-name">First name</label>
+        <input type="text" class="form-control" id="first-name" name="Field1" placeholder="">
+        <label for="last-name">Last name</label>
+        <input type="text" class="form-control" id="last-name" name="Field2" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="email-address">Email address(so I can send you shipment confirmation)</label>
+        <input type="email" class="form-control" id="email-address" name="Field13" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="street-address">Street Address</label>
+        <input type="text" class="form-control" id="street-address" name="Field3" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="address-line-two">Address Line 2</label>
+        <input type="text" class="form-control" id="address-line-two" name="Field4" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="Field5" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" name="Field6" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="zip-code">Zip code</label>
+        <input type="text" class="form-control" id="zip-code" name="Field7" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="favorite-colors">What are your favorite colors?</label>
+        <input type="text" class="form-control" id="favorite-colors" name="Field10" placeholder="">
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="Field11" id="optionsRadios1" value="Solid">
+          Solid
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="Field11" id="optionsRadios2" value="Glitter">
+          Glitter
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="Field11" id="optionsRadios3" value="Design">
+          Design
+        </label>
+      </div>
+    </form>
   </div>
 </div>
+
+<script type="application/javascript">
+ $('#sample-request-form').submit(function(event) {
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+     $.ajax({
+       type: 'POST',
+       url: 'https://easynailsvip.wufoo.com/forms/request-a-free-sample',
+       data: $(this).serialize(),
+       error: function() {
+         $('#sample-request-form').html('Well drat. There was an error. Please <a href="mailto:amy@easynails.vip">email me</a> instead and mention that you would like a sample.');
+       },
+       success: function() {
+         $('#sample-request-form').html('Thank you! I will get your sample ready and send you an email when I drop it in the mail.');
+       }
+     });
+ });
+</script>
