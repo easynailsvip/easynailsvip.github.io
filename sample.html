@@ -7,58 +7,68 @@ layout: "default"
     <form id="sample-request-form">
       <input name="email" type="hidden">
       <input name="Field8" type="hidden" value="United States">
-      <div class="form-group">
-        <label for="first-name">First name</label>
-        <input type="text" class="form-control" id="first-name" name="Field1" placeholder="">
-        <label for="last-name">Last name</label>
-        <input type="text" class="form-control" id="last-name" name="Field2" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="email-address">Email address(so I can send you shipment confirmation)</label>
-        <input type="email" class="form-control" id="email-address" name="Field13" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="street-address">Street Address</label>
-        <input type="text" class="form-control" id="street-address" name="Field3" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="address-line-two">Address Line 2</label>
-        <input type="text" class="form-control" id="address-line-two" name="Field4" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" name="Field5" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="state">State</label>
-        <input type="text" class="form-control" id="state" name="Field6" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="zip-code">Zip code</label>
-        <input type="text" class="form-control" id="zip-code" name="Field7" placeholder="">
-      </div>
-      <div class="form-group">
-        <label for="favorite-colors">What are your favorite colors?</label>
-        <input type="text" class="form-control" id="favorite-colors" name="Field10" placeholder="">
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="Field11" id="optionsRadios1" value="Solid">
-          Solid
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="Field11" id="optionsRadios2" value="Glitter">
-          Glitter
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="Field11" id="optionsRadios3" value="Design">
-          Design
-        </label>
-      </div>
+      <fieldset>
+        <legend>Contact Information</legend>
+        <div class="form-group">
+          <label for="first-name">First name</label>
+          <input type="text" class="form-control" id="first-name" name="Field1" placeholder="">
+          <label for="last-name">Last name</label>
+          <input type="text" class="form-control" id="last-name" name="Field2" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="email-address">Email address (so I can send you shipment confirmation)</label>
+          <input type="email" class="form-control" id="email-address" name="Field13" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="street-address">Street Address</label>
+          <input type="text" class="form-control" id="street-address" name="Field3" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="address-line-two">Address Line 2</label>
+          <input type="text" class="form-control" id="address-line-two" name="Field4" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" name="Field5" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" name="Field6" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="zip-code">Zip code</label>
+          <input type="text" class="form-control" id="zip-code" name="Field7" placeholder="">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Help me pick out something you'll love</legend>
+        <div class="form-group">
+          <label for="favorite-colors">What are your favorite colors?</label>
+          <input type="text" class="form-control" id="favorite-colors" name="Field10" placeholder="">
+        </div>
+        <div class="form-group">
+          <label> Which style would you prefer?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios1" value="Solid">
+              Solid
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios2" value="Glitter">
+              Glitter
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios3" value="Design">
+              Design
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Request Sample</button>
     </form>
   </div>
 </div>
