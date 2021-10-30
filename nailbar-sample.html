@@ -1,0 +1,104 @@
+---
+layout: "default"
+---
+
+<div id="view-home" class="container-fluid">
+  <div class="container">
+    <form id="sample-request-form">
+      <input name="email" type="hidden">
+      <input type="hidden" id="idstamp" name="idstamp" value="jlckn+EEzu9kT1tH5MeKu1d73GZEzI9VLUO60lmyNkE=" />
+      <input name="Field8" type="hidden" value="United States">
+      <fieldset>
+        <legend>Contact Information</legend>
+        <div class="form-group">
+          <label for="first-name">First name</label>
+          <input type="text" class="form-control" id="first-name" name="Field1" placeholder="">
+          <label for="last-name">Last name</label>
+          <input type="text" class="form-control" id="last-name" name="Field2" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="email-address">Email address (so I can send you shipment confirmation)</label>
+          <input type="email" class="form-control" id="email-address" name="Field13" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="street-address">Street Address</label>
+          <input type="text" class="form-control" id="street-address" name="Field3" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="address-line-two">Address Line 2</label>
+          <input type="text" class="form-control" id="address-line-two" name="Field4" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" name="Field5" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" name="Field6" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="zip-code">Zip code</label>
+          <input type="text" class="form-control" id="zip-code" name="Field7" placeholder="">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Help me pick out something you'll love</legend>
+        <div class="form-group">
+          <label for="favorite-colors">What are your favorite colors?</label>
+          <input type="text" class="form-control" id="favorite-colors" name="Field10" placeholder="">
+        </div>
+        <div class="form-group">
+          <label> Which style would you prefer?</label>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios1" value="Solid">
+              Solid
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios2" value="Glitter">
+              Glitter
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="Field11" id="optionsRadios3" value="Design">
+              Design
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Request Sample</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+ $('#sample-request-form').submit(function(event) {
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+     var form = new FormData(this);
+     $.ajax({
+       type: 'POST',
+       enctype: 'multipart/form-data',
+       url: 'https://easynailsvip.wufoo.com/forms/request-a-free-sample',
+       data: form,
+       processData: false,
+       contentType: false,
+       cache: false,
+       timeout: 800000,
+       error: function() {
+         $('#sample-request-form').html('<p class="lead">Thank you! I will get your sample ready and send you an email when I drop it in the mail.</p>');
+       },
+       success: function() {
+         $('#sample-request-form').html('<p class="lead">Thank you! I will get your sample ready and send you an email when I drop it in the mail.</p>');
+       }
+     });
+   }
+ });
+</script>
