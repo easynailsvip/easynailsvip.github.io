@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="icon" href="https://colorstreet.com/content/images/icons/cropped-cropped-Color-Street_Logo_low_res-32x32.jpg" sizes="32x32" />
+    <link rel="icon" href="https://colorstreet.com/content/images/icons/cropped-cropped-Color-Street_Logo_low_res-192x192.jpg" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="https://colorstreet.com/content/images/icons/cropped-cropped-Color-Street_Logo_low_res-180x180.jpg" />
+    <meta name="msapplication-TileImage" content="https://colorstreet.com/content/images/icons/cropped-cropped-Color-Street_Logo_low_res-270x270.jpg" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <title>Amy's Easy Nails VIPs</title>
+
+    {% seo %}
+    {% include head-custom.html %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"></style>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <header class="hidden-print">
+      <div class="container-fluid">
+        <div style="padding: 20px 0;">
+          <div class="hidden-sm hidden-xs" style="float: left;">
+            <img class="horizontal" src="/assets/images/logo-horizontal.jpg" alt="Color Street Logo">
+          </div>
+          <div class="hidden-lg hidden-md" style="float: left;">
+            <img class="vertical" src="/assets/images/logo-vertical.png" alt="Color Street Logo">
+          </div>
+          <div style="float: right;">
+            Amy Shelton<br>
+            Independent Stylist
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <hr>
+
+    <!-- MAIN CONTENT -->
+    <div class="container-fluid">
+      <div id="content-area">
+        {{ content }}
+      </div>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer" class="footer-section">
+      <div class="footer-background">
+        <div class="container">
+          <div class="row">
+            <p>#BeColorful #BeBrilliant #BeColorStreet</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
