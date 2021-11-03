@@ -4,9 +4,9 @@ layout: "default"
 
 <style type="text/css">
  .b1g1-container, .b3g1-container {
-   background-color: #673191;
+   border: 1px solid #673191;
+   color: #673191;
    height: 70px;
-   color: #ffffff;
    font-size: 18px;
    font-weight: 600;
    text-transform: none;
@@ -22,11 +22,6 @@ layout: "default"
 </style>
 
 <div id="view-home" class="container-fluid">
-  <p class="lead">
-    Welcome to my catalog of on-hand stock! If you see anything want,
-    select it. When you are done making selections, click the "I'm Done!" button. You'll be asked
-    for your e-mail address so I can follow up on your request.
-  </p>
   <div class="row">
     <div class="col-md-12 col-lg-7" style="margin-bottom: 10px;">
       <div class="b3g1-container">
@@ -41,6 +36,16 @@ layout: "default"
           <span class="b1g1-text">Buy 1 Get 1 Free!</span> French Manicure
         </div>
       </div>
+    </div>
+  </div>
+  <p class="lead">
+    Welcome to my catalog of on-hand stock! If you see anything want, select it.
+    When you are done making selections, click the "I'm done with my selections!" button below.
+    You'll be asked for your e-mail address so I can follow up on your request.
+  </p>
+  <div class="row">
+    <div style="display: flex; justify-content: center;">
+      <button class="btn btn-primary">I'm done with my selections</button>
     </div>
   </div>
   <div style="display: flex;" >
@@ -177,7 +182,7 @@ layout: "default"
              .css('justify-content', 'space-between')
              .append(
                $('<button>')
-                 .addClass('btn btn-primary')
+                 .addClass('btn btn-secondary')
                  .text('Select')
              )
              .append(
