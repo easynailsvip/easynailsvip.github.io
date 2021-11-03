@@ -94,7 +94,7 @@ layout: "default"
    itemName = item.image.split('.')[0].replace('-', ' ');
    $('#gallery').append(
      $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'}).append(
-       $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
+       $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName, style: 'padding: 10px;' })
      )
    );
  });
