@@ -92,11 +92,10 @@ layout: "default"
    { image: 'wrap-it-up.png', classes: 'design glitter'}
  ];
 
- var thumbnail;
  stock.forEach(item => {
    itemName = item.image.split('.')[0].replace('-', ' ');
    $('#gallery').append(
-     $('<img>', { src: '/images/on-hand-sets' + item.image, alt: itemName });
+     $('<img>', { src: '/images/on-hand-sets' + item.image, alt: itemName })
    );
  });
 </script>
