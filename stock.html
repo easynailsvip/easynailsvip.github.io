@@ -3,7 +3,99 @@ layout: "default"
 ---
 
 <div id="view-home" class="container-fluid">
-  <div class="container">
-    <p>Coming soon!</p>
+  <div style="display: flex;" >
+    <div id="gallery" style="display: flex; flex: 1 1 auto; flex-flow: row wrap;"</div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+ const stock = [
+   { image: 'a-stones-throw.png', classes: 'design shimmer duochrome'},
+   { image: 'aberdeen-aubergine.png', classes: 'solid creme'},
+   { image: 'all-fired-up.png', classes: 'fx glitter'},
+   { image: 'alter-ego.png', classes: 'shimmer'},
+   { image: 'american-dream.png', classes: 'design glitter'},
+   { image: 'anything-froze.png', classes: 'fx'},
+   { image: 'are-you-madriding-me.png', classes: 'solid creme'},
+   { image: 'aspen-sky.png', classes: 'solid creme'},
+   { image: 'beijing-beauty.png', classes: 'solid creme'},
+   { image: 'baton-rougey.png', classes: 'solid creme pedicure'},
+   { image: 'between-the-lines.png', classes: 'art clear'},
+   { image: 'caribbean-coral.png', classes: 'solid creme'},
+   { image: 'check-yourself.png', classes: 'art clear'},
+   { image: 'chelsea-you-later.png', classes: 'glitter'},
+   { image: 'chilladelphia.png', classes: 'solid creme'},
+   { image: 'city-of-love.png', classes: 'french'},
+   { image: 'clear-as-day.png', classes: 'clear'},
+   { image: 'cold-front.png', classes: 'design shimmer'},
+   { image: 'coming-in-hot.png', classes: 'glitter'},
+   { image: 'crantastic.png', classes: 'glitter'},
+   { image: 'czech-me-out.png', classes: 'glitter'},
+   { image: 'deep-diving.png', classes: 'solid creme'},
+   { image: 'dripping-in-diamonds.png', classes: 'dipped'},
+   { image: 'evening-sky.png', classes: 'solid shimmer pedicure'},
+   { image: 'feeling-pine.png', classes: 'design glitter'},
+   { image: 'fort-worth-it.png', classes: 'glitter'},
+   { image: 'fortune-teller.png', classes: 'solid shimmer'},
+   { image: 'gaelic-greenery.png', classes: 'glitter retired'},
+   { image: 'glamsterdam.png', classes: 'glitter retired'},
+   { image: 'glitter-days-ahead.png', classes: 'glitter'},
+   { image: 'glittersweet.png', classes: 'glitter'},
+   { image: 'glitz-and-glory.png', classes: 'deisgn glitter'},
+   { image: 'good-impressions.png', classes: 'design creme'},
+   { image: 'gratitude-is-everything.png', classes: 'solid shimmer'},
+   { image: 'greeking-out.png', classes: 'solid creme'},
+   { image: 'holidaze.png', classes: 'glitter'},
+   { image: 'how-you-dune.png', classes: 'solid shimmer'},
+   { image: 'juneau-the-drill.png', classes: 'glitter'},
+   { image: 'key-west-is-best.png', classes: 'solid creme'},
+   { image: 'kissing-booth.png', classes: 'solid creme'},
+   { image: 'lacey-business.png', classes: 'design shimmer'},
+   { image: 'light-the-night.png', classes: 'design glitter'},
+   { image: 'london-calling.png', classes: 'solid creme'},
+   { image: 'long-time-no-sea.png', classes: 'glitter design'},
+   { image: 'mermaid-you-look.png', classes: 'art clear'},
+   { image: 'midnight-in-manhattan.png', classes: 'solid creme'},
+   { image: 'midnight-shift.png', classes: 'design glitter'},
+   { image: 'new-york-minute.png', classes: 'solid shimmer'},
+   { image: 'night-terror.png', classes: 'glitter holographic'},
+   { image: 'over-the-moon.png', classes: 'dipped'},
+   { image: 'plaid-about-you.png', classes: 'art clear'},
+   { image: 'polka-dotcom.png', classes: 'art clear'},
+   { image: 'ring-it-in.png', classes: 'design glitter'},
+   { image: 'sahara-jewel.png', classes: 'glitter'},
+   { image: 'salute-to-you.png', classes: 'design shimmer'},
+   { image: 'seattle-royale.png', classes: 'glitter retired'},
+   { image: 'secret-identity.png', classes: 'shimmer'},
+   { image: 'secret-santa.png', classes: 'design shimmer'},
+   { image: 'seoul-sister.png', classes: 'solid creme pedicure'},
+   { image: 'shape-shifter.png', classes: 'shimmer'},
+   { image: 'snowmans-land.png', classes: 'design shimmer'},
+   { image: 'sohover-it.png', classes: 'glitter holographic'},
+   { image: 'space-case.png', classes: 'solid shimmer'},
+   { image: 'spot-on.png', classes: 'art clear'},
+   { image: 'strobe-lights.png', classes: 'solid shimmer duochrome'},
+   { image: 'swiss-and-tell.png', classes: 'solid creme'},
+   { image: 'til-the-glitter-end.png', classes: 'glitter design retired'},
+   { image: 'tiny-and-shiny.png', classes: 'glitter clear petite retired'},
+   { image: 'tokyo-lights.png', classes: 'glitter'},
+   { image: 'twilight-hour.png', classes: 'glitter'},
+   { image: 'under-the-mistletoe.png', classes: 'dipped'},
+   { image: 'under-the-stars.png', classes: 'glitter design'},
+   { image: 'undercover.png', classes: 'glitter'},
+   { image: 'wine-down.png', classes: 'glitter'},
+   { image: 'winter-bowmance.png', classes: 'design glitter'},
+   { image: 'wood-you-rather.png', classes: 'solid creme'},
+   { image: 'wrap-it-up.png', classes: 'design glitter'}
+ ];
+
+ stock.forEach(item => {
+   itemName = item.image.split('.')[0].replace('-', ' ');
+   $('#gallery').append(
+     $('<a'), { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'}).append(
+       $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
+     )
+   );
+ });
+</script>
