@@ -2,7 +2,47 @@
 layout: "default"
 ---
 
+<style type="text/css">
+ .b1g1-container, .b3g1-container {
+   background-color: #673191;
+   height: 70px;
+   color: #ffffff;
+   font-size: 18px;
+   font-weight: 600;
+   text-transform: none;
+   text-align: center;
+   padding: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .b1g1-text, .b3g1-text {
+   text-transform: uppercase;
+ }
+</style>
+
 <div id="view-home" class="container-fluid">
+  <p class="lead">
+    Welcome to my catalog of on-hand stock! If you see anything want,
+    select it. When you are done making selections, click the "I'm Done!" button. You'll be asked
+    for your e-mail address so I can follow up on your request.
+  </p>
+  <div class="row">
+    <div class="col-md-12 col-lg-7" style="margin-bottom: 10px;">
+      <div class="b3g1-container">
+        <div>
+          <span class="b3g1-text">Buy 3 Get 1 Free!</span> Colors, Glitters, and Nail Art Designs
+	      </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-5">
+      <div class="b1g1-container">
+        <div>
+          <span class="b1g1-text">Buy 1 Get 1 Free!</span> French Manicure
+        </div>
+      </div>
+    </div>
+  </div>
   <div style="display: flex;" >
     <div id="gallery" style="display: flex; flex: 1 1 auto; flex-flow: row wrap;"></div>
   </div>
@@ -118,18 +158,40 @@ layout: "default"
 
  stock.forEach(item => {
    itemName = item.image.split('.')[0].replace('-', ' ');
-   $('#gallery').append(
-     $('div', { class: 'panel', style: 'padding: 0 10px' }).append(
-       $('div', { class: 'panel-body' }).append(
-         $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'}).append(
-           $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
+   $('#gallery')
+     .append(
+       $('<div>')
+         .addClass('panel panel-default')
+         .css('margin-right', '10px')
+         .append(
+           $('<div>')
+             .addClass('panel-body')
+             .append(
+               $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
+             )
          )
-       )
-     ).append(
-       $('div', { class: 'panel-footer' }).append(
-         $('<button>Select</button>', { class: 'btn btn-primary' })
-       )
-     )
-   );
+         .append(
+           $('<div>')
+             .addClass('panel-footer')
+             .css('display', 'flex')
+             .css('justify-content', 'space-between')
+             .append(
+               $('<button>')
+                 .addClass('btn btn-primary')
+                 .text('Select')
+             )
+             .append(
+               $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'})
+                 .css('align-self', 'center')
+                 .append(
+                   $('<span>').text('View larger photo ')
+                 )
+                 .append(
+                   $('<span>', { 'aria-hidden': 'true' })
+                     .addClass('glyphicon glyphicon-new-window')
+                 )
+             )
+         )
+     );
  });
 </script>
