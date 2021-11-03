@@ -13,7 +13,7 @@ layout: "default"
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="application/javascript">
  const stock = [
-   { image: 'a-stones-throw.png', classes: 'design shimmer'},
+   { image: 'a-stones-throw.png', classes: 'design shimmer duochrome'},
    { image: 'aberdine-aubergine.png', classes: 'solid creme'},
    { image: 'all-fired-up.png', classes: 'fx glitter'},
    { image: 'alter-ego.png', classes: 'shimmer'},
@@ -80,7 +80,7 @@ layout: "default"
    { image: 'strobe-lights.png', classes: 'solid shimmer duochrome'},
    { image: 'swiss-and-tell.png', classes: 'solid creme'},
    { image: 'til-the-glitter-end.png', classes: 'glitter design retired'},
-   { image: 'tiny-and-shiny.png', classes: 'glitter clear retired'},
+   { image: 'tiny-and-shiny.png', classes: 'glitter clear petite retired'},
    { image: 'tokyo-lights.png', classes: 'glitter'},
    { image: 'twilight-hour.png', classes: 'glitter'},
    { image: 'under-the-mistletoe.png', classes: 'dipped'},
@@ -95,7 +95,7 @@ layout: "default"
  stock.forEach(item => {
    itemName = item.image.split('.')[0].replace('-', ' ');
    $('#gallery').append(
-     $('<img>', { src: '/assets/images/on-hand-sets/' + item.image, alt: itemName })
+     $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
    );
  });
 </script>
