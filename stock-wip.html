@@ -109,7 +109,6 @@ layout: "default"
    { image: 'crantastic.png', classes: 'glitter'},
    { image: 'czech-me-out.png', classes: 'glitter'},
    { image: 'dallas-darling.png', classes: 'glitter holographic'},
-   { image: 'deep-diving.png', classes: 'solid creme'},
    { image: 'deepwater-opal.png', classes: 'glitter'},
    { image: 'dripping-in-diamonds.png', classes: 'dipped retired'},
    { image: 'evening-sky.png', classes: 'solid shimmer pedicure'},
@@ -214,14 +213,20 @@ layout: "default"
                  .text('Select')
              )
              .append(
-               $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'})
-                 .css('align-self', 'center')
+               $('<div>')
                  .append(
-                   $('<span>').text('View larger photo ')
+                   $('<div>').text(itemName.toUpperCase())
                  )
                  .append(
-                   $('<span>', { 'aria-hidden': 'true' })
-                     .addClass('glyphicon glyphicon-new-window')
+                   $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'})
+                     .css('align-self', 'center')
+                     .append(
+                       $('<span>').text('View larger photo ')
+                     )
+                     .append(
+                       $('<span>', { 'aria-hidden': 'true' })
+                         .addClass('glyphicon glyphicon-new-window')
+                     )
                  )
              )
          )
