@@ -189,7 +189,8 @@ layout: "default"
  ];
 
  stock.forEach(item => {
-   const itemName = item.image.split('.')[0].replace('-', ' ');
+   const itemId = item.image.split('.')[0];
+   const itemName = itemId.replace('-', ' ');
    $('#gallery')
      .append(
        $('<div>')
@@ -208,7 +209,7 @@ layout: "default"
              .css('display', 'flex')
              .css('justify-content', 'space-between')
              .append(
-               $('<button>', { id: itemName })
+               $('<button>', { id: itemId })
                  .addClass('btn btn-secondary')
                  .text('Select')
              )
