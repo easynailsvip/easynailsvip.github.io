@@ -189,7 +189,7 @@ layout: "default"
 
  stock.forEach(item => {
    const itemId = item.image.split('.')[0];
-   const itemName = itemId.replace('-', ' ');
+   const itemName = itemId.replaceAll('-', ' ');
    $('#gallery')
      .append(
        $('<div>')
@@ -214,6 +214,7 @@ layout: "default"
              )
              .append(
                $('<div>')
+                 .css('text-align', 'right')
                  .append(
                    $('<div>').text(itemName.toUpperCase())
                  )
