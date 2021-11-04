@@ -232,16 +232,16 @@ layout: "default"
    }
  });
 
- $('button#selections-complete').click() => {
+ $('button#selections-complete').click(() => {
    $('#confirm-selections').modal();
- };
+ });
 
  $('button#clear-selections').click(() => {
   $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
  });
 
- $('button#send-selections').click() => {
+ $('button#send-selections').click(() => {
    console.log('to do');
- };
+ });
 
 </script>
