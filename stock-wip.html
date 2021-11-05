@@ -307,18 +307,20 @@ layout: "default"
            $('<div>')
              .addClass('alert alert-success')
              .setAttribute('role', 'alert')
-             .text('Thank you! I will be back to you as soon as possible to finalize your order.');
-           $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+             .text('Thank you! I will get back to you as soon as possible to finalize your order.')
+         );
+         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
        },
        success: function() {
          $('#view-home').prepend(
            $('<div>')
              .addClass('alert alert-success')
              .setAttribute('role', 'alert')
-             .text('Thank you! I will be back to you as soon as possible to finalize your order.');
-           $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+             .text('Thank you! I will be back to you as soon as possible to finalize your order.')
+         );
+         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
        }
      });
    }
-  });
+ });
 </script>
