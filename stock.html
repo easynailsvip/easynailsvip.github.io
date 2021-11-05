@@ -2,13 +2,74 @@
 layout: "default"
 ---
 
+<style type="text/css">
+ .b1g1-container, .b3g1-container {
+   border: 1px solid #673191;
+   color: #673191;
+   height: 70px;
+   font-size: 18px;
+   font-weight: 600;
+   text-transform: none;
+   text-align: center;
+   padding: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .b1g1-text, .b3g1-text {
+   text-transform: uppercase;
+ }
+</style>
+
 <div id="view-home" class="container-fluid">
-  <div style="display: flex;" >
+  <div class="row">
+    <div class="col-md-12 col-lg-7" style="margin-bottom: 10px;">
+      <div class="b3g1-container">
+        <div>
+          <span class="b3g1-text">Buy 3 Get 1 Free!</span> Colors, Glitters, and Nail Art Designs
+	      </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-5">
+      <div class="b1g1-container">
+        <div>
+          <span class="b1g1-text">Buy 1 Get 1 Free!</span> French Manicure
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="border: 1px solid #673191; margin-top: 20px; padding: 20px;">
+    <p class="lead">
+      Welcome to my catalog of on-hand stock! Please
+      <a href="https://colorstreet.com/easynailsvip/meet-your-stylist" target="_blank">Contact me</a>
+      if you'd like to purchase any of these sets.
+    </p>
+  </div>
+  <div style="display: flex; margin-top: 20px;" >
     <div id="gallery" style="display: flex; flex: 1 1 auto; flex-flow: row wrap;"></div>
   </div>
 </div>
 
+<div id="confirm-selections" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Please Review Your Selections</h4>
+      </div>
+      <div id="selection-summary" class="modal-body">
+        <p>Hmmm, it looks like you haven't made any selections yet?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="send-selections" type="button" class="btn btn-primary disabled" disabled>Send Amy my selections</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="application/javascript">
  const stock = [
    { image: 'aberdeen-aubergine.png', classes: 'solid creme'},
@@ -44,6 +105,7 @@ layout: "default"
    { image: 'dripping-in-diamonds.png', classes: 'dipped retired'},
    { image: 'evening-sky.png', classes: 'solid shimmer pedicure'},
    { image: 'feathered-friends.png', classes: 'design shimmer'},
+   { image: 'feeling-fabboolous.png', classes: 'design glow-in-the-dark'},
    { image: 'feeling-pine.png', classes: 'design glitter'},
    { image: 'flamingoals.png', classes: 'design creme'},
    { image: 'fort-worth-it.png', classes: 'glitter'},
@@ -63,6 +125,7 @@ layout: "default"
    { image: 'ice-castle.png', classes: 'glitter'},
    { image: 'ice-ice-maybe.png', classes: 'design glitter'},
    { image: 'i-want-scandi.png', classes: 'glitter holographic'},
+   { image: 'jack-of-all-trades.png', classes: 'design glitter'},
    { image: 'juneau-the-drill.png', classes: 'glitter'},
    { image: 'key-west-is-best.png', classes: 'solid creme'},
    { image: 'kissing-booth.png', classes: 'solid creme'},
@@ -84,7 +147,7 @@ layout: "default"
    { image: 'plaid-about-you.png', classes: 'art clear'},
    { image: 'plaid-reputation.png', classes: 'design glitter'},
    { image: 'polka-dotcom.png', classes: 'art clear'},
-   { image: 'pop-the-bubbly.png', classes: ''},
+   { image: 'pop-the-bubbly.png', classes: 'glitter'},
    { image: 'ring-it-in.png', classes: 'design glitter'},
    { image: 'russian-around.png', classes: 'glitter'},
    { image: 'sahara-jewel.png', classes: 'glitter'},
@@ -111,6 +174,7 @@ layout: "default"
    { image: 'under-the-stars.png', classes: 'glitter design'},
    { image: 'venetian-velvet.png', classes: 'solid shimmer'},
    { image: 'undercover.png', classes: 'glitter'},
+   { image: 'web-of-lies.png', classes: 'art clear'},
    { image: 'wine-down.png', classes: 'glitter'},
    { image: 'winter-bowmance.png', classes: 'design glitter'},
    { image: 'wood-you-rather.png', classes: 'solid creme'},
@@ -119,11 +183,64 @@ layout: "default"
  ];
 
  stock.forEach(item => {
-   itemName = item.image.split('.')[0].replace('-', ' ');
-   $('#gallery').append(
-     $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'}).append(
-       $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName, style: 'padding: 10px;' })
-     )
-   );
+   const itemId = item.image.split('.')[0];
+   const itemName = itemId.replaceAll('-', ' ');
+   $('#gallery')
+     .append(
+       $('<div>')
+         .addClass('panel panel-default')
+         .css('margin-right', '10px')
+         .append(
+           $('<div>')
+             .addClass('panel-body')
+             .append(
+               $('<img>', { src: '/assets/images/on-hand-sets/thumbnail-' + item.image, alt: itemName })
+             )
+         )
+         .append(
+           $('<div>')
+             .addClass('panel-footer')
+             .append(
+               $('<div>')
+                 .css('text-align', 'center')
+                 .append(
+                   $('<div>').text(itemName.toUpperCase())
+                 )
+                 .append(
+                   $('<a>', { href: '/assets/images/on-hand-sets/' + item.image, target: '_blank', title: 'Open ' + itemName + ' in new tab'})
+                     .css('align-self', 'center')
+                     .append(
+                       $('<span>').text('View larger photo ')
+                     )
+                     .append(
+                       $('<span>', { 'aria-hidden': 'true' })
+                         .addClass('glyphicon glyphicon-new-window')
+                     )
+                 )
+             )
+         )
+     );
+ });
+ $('#gallery button').click((event) => {
+   const button = $(event.target).closest('button');
+   const itemName = $(button).attr('id');
+   const isSelected = ($(button).attr('class').indexOf('btn-primary') !== -1);
+   if (isSelected) {
+     $(button).removeClass('btn-primary').addClass('btn-secondary').text('Select');
+   } else {
+     $(button).removeClass('btn-secondary').addClass('btn-primary').html('Selected <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
+   }
+ });
+
+ $('button#selections-complete').click(() => {
+   $('#confirm-selections').modal();
+ });
+
+ $('button#clear-selections').click(() => {
+   $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+ });
+
+ $('button#send-selections').click(() => {
+   console.log('to do');
  });
 </script>
