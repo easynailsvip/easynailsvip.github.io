@@ -65,12 +65,37 @@ layout: "default"
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Please Review Your Selections</h4>
       </div>
-      <div id="selection-summary" class="modal-body">
-        <p>Hmmm, it looks like you haven't made any selections yet?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="send-selections" type="button" class="btn btn-primary disabled" disabled>Send Amy my selections</button>
+      <div class="modal-body">
+        <form id="order-form">
+          <input name="email" type="hidden">
+          <input type="hidden" id="idstamp" name="idstamp" value="XJ2PjoJTQoGuQ4gZC7BfAQ==">
+          <div class="form-group">
+            <label for="selected-sets">Your selections:</label>
+            <textarea id="selected-sets" disabled name="Field101" rows="10"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="first-name">First name</label>
+            <input type="text" class="form-control" id="first-name" name="Field107" placeholder="">
+            <label for="last-name">Last name</label>
+            <input type="text" class="form-control" id="last-name" name="Field108" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="email-address">Email address (so I can finalize your order)</label>
+            <input type="email" class="form-control" id="email-address" name="Field109" placeholder="">
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="Field1" id="gift-bag-option" style="margin-top: 8px">
+                Yes, I'd like to make this order a gift bag for $3 more. Includes a glass
+                nail file, a cuticle revitalizer nail oil pen, a rubber tipped cuticle pusher,
+                organza gift bag and a personalized message from you.
+              </label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary disabled">Send Amy my selections</button>
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -248,14 +273,52 @@ layout: "default"
  });
 
  $('button#selections-complete').click(() => {
+   var selections = [];
+   $('#gallery button.btn-primary').each((_, button) => {
+     const itemName = button.id.replaceAll('-', ' ');
+     selections.push(itemName.toUpperCase());
+   });
+   $('#selection-summary p').text((selections.length > 0) ?
+                                  'You have selected: ' + selections.sort().join(', ') :
+                                  "Hmmm, it looks like you haven't made any selections yet?");
    $('#confirm-selections').modal();
  });
 
  $('button#clear-selections').click(() => {
-  $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+   $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
  });
 
  $('button#send-selections').click(() => {
-   console.log('to do');
- });
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     var form = new FormData(this);
+     $.ajax({
+       type: 'POST',
+       enctype: 'multipart/form-data',
+       url: 'https://easynailsvip.wufoo.com/forms/stock-order-form',
+       data: form,
+       processData: false,
+       contentType: false,
+       cache: false,
+       timeout: 800000,
+       error: function() {
+         $('#view-home').prepend(
+           $('<div>')
+             .addClass('alert alert-success')
+             .setAttribute('role', 'alert')
+             .text('Thank you! I will be back to you as soon as possible to finalize your order.');
+           $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+       },
+       success: function() {
+         $('#view-home').prepend(
+           $('<div>')
+             .addClass('alert alert-success')
+             .setAttribute('role', 'alert')
+             .text('Thank you! I will be back to you as soon as possible to finalize your order.');
+           $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+       }
+     });
+   }
+  });
 </script>
