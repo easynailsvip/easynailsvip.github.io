@@ -3,6 +3,14 @@ layout: "default"
 ---
 
 <style type="text/css">
+ .back-to-top {
+   font-size: 2em;
+   opacity: 0.75;
+   position: fixed;
+   bottom: 10px;
+   left: 10px;
+   padding: 10px 15px;
+ }
  .b1g1-container, .b3g1-container {
    border: 1px solid #673191;
    color: #673191;
@@ -40,15 +48,26 @@ layout: "default"
   </div>
   <div class="container" style="border: 1px solid #673191; margin-top: 20px; padding: 20px;">
     <p class="lead">
-      Welcome to my catalog of on-hand stock! Please
-      <a href="https://colorstreet.com/easynailsvip/meet-your-stylist" target="_blank">contact me</a>
-      if you'd like to purchase any of these sets.
+      Welcome to my catalog of on-hand stock! If you see a set you'd like to purchase, select it.
+      Also make sure to select your free set if doing a B1G1 (French manicure) or B3G1 (colors, glitters, nail art designs).
+      When you are done making your selections, click the "I'm done with my selections!" button below.
+      Then you'll be asked for your name and e-mail address so I can follow up and get your sets to you ASAP.
     </p>
+    <div style="display: flex; justify-content: center;">
+      <button id="selections-complete" class="btn btn-primary">
+        I'm done with my selections
+      </button>
+      &nbsp; &nbsp; &nbsp;
+      <button id="clear-selections" class="btn btn-default">Clear selections</button>
+    </div>
   </div>
   <div style="display: flex; margin-top: 20px;" >
     <div id="gallery" style="display: flex; flex: 1 1 auto; flex-flow: row wrap;"></div>
   </div>
 </div>
+
+<a href="#" class="back-to-top btn btn-primary" title="back to top of page">
+  <span aria-hidden="true" class="glyphicon glyphicon-collapse-up"></span></a>
 
 <div id="confirm-selections" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -57,12 +76,37 @@ layout: "default"
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Please Review Your Selections</h4>
       </div>
-      <div id="selection-summary" class="modal-body">
-        <p>Hmmm, it looks like you haven't made any selections yet?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="send-selections" type="button" class="btn btn-primary disabled" disabled>Send Amy my selections</button>
+      <div class="modal-body">
+        <form id="order-form">
+          <input name="email" type="hidden">
+          <input type="hidden" id="idstamp" name="idstamp" value="6JFrpwrJAExi0D0uVGnulrHxMFzazGLQFsA7ftnybzc=">
+          <div class="form-group">
+            <label for="selected-sets">Your selections:</label>
+            <textarea id="selected-sets" class="form-control" name="Field101" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="first-name">First name</label>
+            <input type="text" class="form-control" id="first-name" name="Field107" placeholder="" required>
+            <label for="last-name">Last name</label>
+            <input type="text" class="form-control" id="last-name" name="Field108" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label for="email-address">Email address</label>
+            <input type="email" class="form-control" id="email-address" name="Field109" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="Field1" id="gift-bag-option" style="margin-top: 8px">
+                Yes, I'd like to make this order a gift bag for $3 more. Gift bags include a glass
+                nail file, a cuticle revitalizer nail oil pen, a rubber tipped cuticle pusher,
+                organza gift bag and a personalized message.
+              </label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send Amy my selections</button>
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -200,9 +244,16 @@ layout: "default"
          .append(
            $('<div>')
              .addClass('panel-footer')
+             .css('display', 'flex')
+             .css('justify-content', 'space-between')
+             .append(
+               $('<button>', { id: itemId })
+                 .addClass('btn btn-secondary')
+                 .text('Select')
+             )
              .append(
                $('<div>')
-                 .css('text-align', 'center')
+                 .css('text-align', 'right')
                  .append(
                    $('<div>').text(itemName.toUpperCase())
                  )
@@ -233,14 +284,59 @@ layout: "default"
  });
 
  $('button#selections-complete').click(() => {
-   $('#confirm-selections').modal();
+   var selections = [];
+   $('#gallery button.btn-primary').each((_, button) => {
+     const itemName = button.id.replaceAll('-', ' ');
+     selections.push(itemName.toUpperCase());
+   });
+   if (selections.length > 0) {
+     $('#selected-sets').val(selections.sort().join(', '));
+     $('#confirm-selections').modal();
+   }
  });
 
  $('button#clear-selections').click(() => {
    $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
  });
 
- $('button#send-selections').click(() => {
-   console.log('to do');
+ $('#order-form').submit(function(event) {
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+
+     var form = new FormData(this);
+     $.ajax({
+       type: 'POST',
+       enctype: 'multipart/form-data',
+       url: 'https://easynailsvip.wufoo.com/forms/stock-order-form',
+       data: form,
+       processData: false,
+       contentType: false,
+       cache: false,
+       timeout: 800000,
+       error: function() {
+         $('#view-home').prepend(
+           $('<div>')
+             .addClass('alert alert-success')
+             .attr('role', 'alert')
+             .text('Thank you! I will contact you as soon as possible to finalize your order.')
+         );
+         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#confirm-selections').modal('hide');
+       },
+       success: function() {
+         $('#view-home').prepend(
+           $('<div>')
+             .addClass('alert alert-success')
+             .attr('role', 'alert')
+             .text('Thank you! I will contact you as soon as possible to finalize your order.')
+         );
+         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#confirm-selections').modal('hide');
+       }
+     });
+   }
  });
 </script>
