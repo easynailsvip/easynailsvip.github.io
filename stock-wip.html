@@ -4,10 +4,12 @@ layout: "default"
 
 <style type="text/css">
  .back-to-top {
-   opacity: 0.5;
+   font-size: 2em;
+   opacity: 0.75;
    position: fixed;
    bottom: 10px;
    left: 10px;
+   padding: 10px 15px;
  }
  .b1g1-container, .b3g1-container {
    border: 1px solid #673191;
@@ -80,7 +82,7 @@ layout: "default"
           <input type="hidden" id="idstamp" name="idstamp" value="6JFrpwrJAExi0D0uVGnulrHxMFzazGLQFsA7ftnybzc=">
           <div class="form-group">
             <label for="selected-sets">Your selections:</label>
-            <textarea id="selected-sets" class="form-control" disabled name="Field101" rows="5"></textarea>
+            <textarea id="selected-sets" class="form-control" name="Field101" rows="5"></textarea>
           </div>
           <div class="form-group">
             <label for="first-name">First name</label>
@@ -301,6 +303,9 @@ layout: "default"
    event.preventDefault();
    var isSpamBot = $(this).find('input[name=email]').val();
    if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+
      var form = new FormData(this);
      $.ajax({
        type: 'POST',

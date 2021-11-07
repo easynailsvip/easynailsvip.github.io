@@ -82,6 +82,7 @@ layout: "default"
    if (!isSpamBot) {
      // Remove the honey pot from the form.
      $(this).children('input[name=email]').remove();
+
      var form = new FormData(this);
      $.ajax({
        type: 'POST',
