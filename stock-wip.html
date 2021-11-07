@@ -306,19 +306,21 @@ layout: "default"
          $('#view-home').prepend(
            $('<div>')
              .addClass('alert alert-success')
-             .setAttribute('role', 'alert')
+             .attr('role', 'alert')
              .text('Thank you! I will contact you as soon as possible to finalize your order.')
          );
          $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#confirm-selections').modal('hide');
        },
        success: function() {
          $('#view-home').prepend(
            $('<div>')
              .addClass('alert alert-success')
-             .setAttribute('role', 'alert')
+             .attr('role', 'alert')
              .text('Thank you! I will contact you as soon as possible to finalize your order.')
          );
          $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#confirm-selections').modal('hide');
        }
      });
    }
