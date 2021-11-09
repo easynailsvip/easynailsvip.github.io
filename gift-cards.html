@@ -2,8 +2,124 @@
 layout: "default"
 ---
 
+<style type="text/css">
+ .address {
+   display: none;
+ }
+</style>
+
 <div id="view-home" class="container-fluid">
   <div class="container">
-    <p class="lead">Coming soon!</p>
+    <h1 class="page-header">Gift card order form</h1>
+    <form id="gift-card-form">
+      <input name="email" type="hidden">
+      <input type="hidden" id="idstamp" name="idstamp" value="9sSujU1OEnRVa+PCc5oiUuF+GGRDOQ192L8w/7nsVJg=" />
+      <input name="Field12" type="hidden" value="United States">
+      <input name="Field14-1" type="hidden" value="0">
+      <fieldset>
+        <legend>Your Information</legend>
+        <div class="form-group">
+          <label for="first-name">Your first name</label>
+          <input type="text" class="form-control" id="first-name" name="Field1" placeholder="">
+          <label for="last-name">Your last name</label>
+          <input type="text" class="form-control" id="last-name" name="Field2" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="email-address">Your email address</label>
+          <input type="email" class="form-control" id="email-address" name="Field3" placeholder="">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Gift Card Details</legend>
+        <div class="form-group">
+          <label style="margin-bottom: 0;">Send the gift card via: </label>
+          <div class="radio-inline">
+            <label>
+              <input type="radio" id="delivery-email" name="delivery-method" value="email" selected>
+              e-mail
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input type="radio" id="delivery-post-office" name="delivery-method" value="post-office">
+              Post Office
+            </label>
+          </div>
+        </div>
+        <div class="form-group email">
+          <label for="email-address">Recipient's email address</label>
+          <input type="email" class="form-control" id="email-address" name="Field6" placeholder="">
+        </div>
+        <div class="form-group address">
+          <label for="street-address">Street Address</label>
+          <input type="text" class="form-control" id="street-address" name="Field7" placeholder="">
+        </div>
+        <div class="form-group address">
+          <label for="address-line-two">Address Line 2</label>
+          <input type="text" class="form-control" id="address-line-two" name="Field8" placeholder="">
+        </div>
+        <div class="form-group address">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" name="Field9" placeholder="">
+        </div>
+        <div class="form-group address">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" name="Field10" placeholder="">
+        </div>
+        <div class="form-group address">
+          <label for="zip-code">Zip code</label>
+          <input type="text" class="form-control" id="zip-code" name="Field11" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="card-amount">Gift card amount (in dollars)</label>
+          <input type="number" class="form-control" id="card-amount" name="Field14" placeholder="" value="25" step="1" min="1">
+        </div>
+        <div class="form-group">
+          <label for="favorite-colors">Personalized message from you to recipient:</label>
+          <textarea class="form-control" id="message" name="Field13" placeholder="" rows="5"></textarea>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Send gift card info to Amy</button>
+    </form>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+ $('#delivery-email').click(function() {
+   $('.address').hide();
+   $('.email').show();
+ });
+ $('#delivery-post-office').click(function() {
+   $('.address').show();
+   $('.email').hide();
+ });
+
+ $('#gift-card-form').submit(function(event) {
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+     $(this).children('input[name=delivery-method]').remove();
+
+     var form = new FormData(this);
+     $.ajax({
+       type: 'POST',
+       enctype: 'multipart/form-data',
+       url: 'https://easynailsvip.wufoo.com/forms/gift-card',
+       data: form,
+       processData: false,
+       contentType: false,
+       cache: false,
+       timeout: 800000,
+       error: function() {
+         $('#gift-card-form').html('<p class="lead">Thank you! I will email you an invoice for your gift card.</p><a href="/" class="btn btn-primary">Go back to main page</a>');
+       },
+       success: function() {
+         $('#gift-card-form').html('<p class="lead">Thank you! I will email you an invoice for your gift card.</p><a href="/" class="btn btn-primary">Go back to main page</a>');
+       }
+     });
+   }
+ });
+</script>
