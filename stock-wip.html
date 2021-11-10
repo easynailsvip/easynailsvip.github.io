@@ -377,8 +377,8 @@ layout: "default"
      return;
    }
 
-   sets.each((set) => {
-     var setName = set.dataset.setName;
+   sets.each((index, colorStreetSet) => {
+     var setName = colorStreetSet.dataset.setName;
      var showSet = false;
      words.forEach((word) => {
        if (setName.indexOf(word.toLowerCase()) !== -1) {
@@ -386,9 +386,9 @@ layout: "default"
        }
      });
      if (showSet) {
-       $(this).show();
+       $(colorStreetSet).show();
      } else {
-       $(this).hide();
+       $(colorStreetSet).hide();
      }
    });
  });
