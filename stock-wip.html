@@ -376,8 +376,8 @@ layout: "default"
      return;
    }
 
-   sets.each((set) => {
-     var setName = set.getAttribute('data-set-name');
+   sets.each(() => {
+     var setName = $(this).attr('data-set-name');
      var showSet = false;
      words.each((word) => {
        if (setName.indexOf(word.toLowerCase()) !== -1) {
@@ -385,9 +385,9 @@ layout: "default"
        }
      });
      if (showSet) {
-       set.show();
+       $(this).show();
      } else {
-       set.hide();
+       $(this).hide();
      }
    });
  });
