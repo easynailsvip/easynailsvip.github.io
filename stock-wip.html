@@ -11,11 +11,9 @@ layout: "default"
    left: 10px;
    padding: 10px 15px;
  }
- .b1g1-container, .b3g1-container, #gallery-container {
-   border: 1px solid #673191;
- }
  .b1g1-container, .b3g1-container {
-   color: #673191;
+   background-color: #673191;
+   color: #FFFFFF;
    height: 70px;
    font-size: 18px;
    font-weight: 600;
@@ -31,6 +29,7 @@ layout: "default"
  }
  #gallery-container {
    align-items: center;
+   border: 1px solid #673191;
    display: flex;
    flex-flow: column nowrap;
    margin-top: 20px;
@@ -378,8 +377,8 @@ layout: "default"
      return;
    }
 
-   sets.each(() => {
-     var setName = $(this).attr('data-set-name');
+   sets.each((set) => {
+     var setName = set.dataset.setName;
      var showSet = false;
      words.forEach((word) => {
        if (setName.indexOf(word.toLowerCase()) !== -1) {
