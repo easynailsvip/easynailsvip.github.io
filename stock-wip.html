@@ -30,7 +30,9 @@ layout: "default"
    text-transform: uppercase;
  }
  #gallery-container {
+   align-items: center;
    display: flex;
+   flex-flow: column nowrap;
    margin-top: 20px;
    padding: 10px;
  }
@@ -379,7 +381,7 @@ layout: "default"
    sets.each(() => {
      var setName = $(this).attr('data-set-name');
      var showSet = false;
-     words.each((word) => {
+     words.forEach((word) => {
        if (setName.indexOf(word.toLowerCase()) !== -1) {
          showSet = true;
        }
