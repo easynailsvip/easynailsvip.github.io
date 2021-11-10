@@ -12,8 +12,8 @@ layout: "default"
    padding: 10px 15px;
  }
  .b1g1-container, .b3g1-container {
-   border: 1px solid #673191;
-   color: #673191;
+   background-color: #673191;
+   color: #FFFFFF;
    height: 70px;
    font-size: 18px;
    font-weight: 600;
@@ -26,6 +26,19 @@ layout: "default"
  }
  .b1g1-text, .b3g1-text {
    text-transform: uppercase;
+ }
+ #gallery-container {
+   align-items: center;
+   border: 1px solid #673191;
+   display: flex;
+   flex-flow: column nowrap;
+   margin-top: 20px;
+   padding: 10px;
+ }
+ #gallery {
+   display: flex;
+   flex: 1 1 auto;
+   flex-flow: row wrap;
  }
 </style>
 
@@ -46,7 +59,7 @@ layout: "default"
       </div>
     </div>
   </div>
-  <div class="container" style="border: 1px solid #673191; margin-top: 20px; padding: 20px;">
+  <div class="container" style="margin-top: 20px; padding: 20px;">
     <p class="lead">
       Welcome to my catalog of on-hand stock! If you see a set you'd like to purchase, select it.
       Also make sure to select your free set if doing a B1G1 (French manicure) or B3G1 (colors, glitters, nail art designs).
@@ -61,8 +74,21 @@ layout: "default"
       <button id="clear-selections" class="btn btn-default">Clear selections</button>
     </div>
   </div>
-  <div style="display: flex; margin-top: 20px;" >
-    <div id="gallery" style="display: flex; flex: 1 1 auto; flex-flow: row wrap;"></div>
+  <div id="gallery-container">
+    <div id="gallery-filtering">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse in" aria-expanded="true">
+          <div class="navbar-form navbar-left">
+            <div class="form-group">
+              <input name="ItemSearchBox" type="text" id="txtSearchBox" class="form-control" placeholder="Search">
+            </div>
+            <input type="submit" name="ItemSearch" value="Search" id="btnSearch" class="btn btn-default">
+            <input type="submit" name="ClearCategories" value="Clear All" id="btnClearCategories" class="btn btn-danger">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="gallery"></div>
   </div>
 </div>
 
@@ -228,6 +254,7 @@ layout: "default"
      .append(
        $('<div>')
          .addClass('panel panel-default ' + item.categories)
+         .attr('data-set-name', itemName)
          .css('margin-right', '10px')
          .append(
            $('<div>')
@@ -270,6 +297,7 @@ layout: "default"
          )
      );
  });
+
  $('#gallery button').click((event) => {
    const button = $(event.target).closest('button');
    const itemName = $(button).attr('id');
@@ -321,7 +349,7 @@ layout: "default"
              .attr('role', 'alert')
              .text('Thank you! I will contact you as soon as possible to finalize your order.')
          );
-         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#gallery button.btn-primary').removeClass('btn-primary').addClass('btn-secondary').text('Select');
          $('#confirm-selections').modal('hide');
        },
        success: function() {
@@ -331,10 +359,41 @@ layout: "default"
              .attr('role', 'alert')
              .text('Thank you! I will contact you as soon as possible to finalize your order.')
          );
-         $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
+         $('#gallery button.btn-primary').removeClass('btn-primary').addClass('btn-secondary').text('Select');
          $('#confirm-selections').modal('hide');
        }
      });
    }
+ });
+
+ $("input#btnSearch").click(function() {
+   // Split the current value of search filter input.
+   var words = $('#txtSearchBox').val().split(' ');
+
+   // Gather all gallery sets.
+   var sets = $('#gallery').find('div[data-set-name]');
+   if (words.length === 0) { // Show all sets on empty filter.
+     sets.show();
+     return;
+   }
+
+   sets.each((index, colorStreetSet) => {
+     var setName = colorStreetSet.dataset.setName;
+     var showSet = false;
+     words.forEach((word) => {
+       if (setName.indexOf(word.toLowerCase()) !== -1) {
+         showSet = true;
+       }
+     });
+     if (showSet) {
+       $(colorStreetSet).show();
+     } else {
+       $(colorStreetSet).hide();
+     }
+   });
+ });
+ $("input#btnClearCategories").click(function() {
+   $('#txtSearchBox').val('');
+   $('#gallery').find('div[data-set-name]').show();
  });
 </script>
