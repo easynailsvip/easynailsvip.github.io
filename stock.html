@@ -436,6 +436,7 @@ layout: "default"
  }
 
  $('input#btnSearch').click(applyFilters);
+ $('label.filter-option input[type=checkbox]').change(applyFilters);
  $('input#btnClearCategories').click(() => {
    $('#txtSearchBox').val('');
    $('label.filter-option input[type=checkbox]:checked').prop('checked', false);
