@@ -438,7 +438,7 @@ layout: "default"
  $("input#btnSearch").click(applyFilters);
  $('input#btnClearCategories').click(() => {
    $('#txtSearchBox').val('');
-   $('label.filter-option input[type=checkbox]:checked').each((checkbox) => checkbox.checked = false);
+   $('label.filter-option input[type=checkbox]:checked').each((index, checkbox) => checkbox.checked = false);
    $('#gallery').find('div[data-set-name]').show();
  });
 </script>
