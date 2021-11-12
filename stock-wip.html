@@ -396,15 +396,14 @@ layout: "default"
    const setName = colorStreetSet.dataset.setName;
    filterText.forEach((filter) => {
      if (setName.indexOf(filter.toLowerCase()) !== -1) {
-       showSet = true;
+       filterMatch = true;
      }
    });
 
    var categoryMatch = categories.length === 0;
    const setCategories = colorStreetSet.className;
    categories.forEach((category) => {
-     const matchesCategory = setCategories.indexOf(category) !== -1;
-     if (matchesCategory && showSet !== false) {
+     if (setCategories.indexOf(category) !== -1) {
        categoryMatch = true;
      }
    });
