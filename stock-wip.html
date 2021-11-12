@@ -40,6 +40,9 @@ layout: "default"
    flex: 1 1 auto;
    flex-flow: row wrap;
  }
+ label.filter-option {
+   margin-right: 10px;
+ }
 </style>
 
 <div id="view-home" class="container-fluid">
@@ -47,7 +50,7 @@ layout: "default"
     <div class="col-md-12 col-lg-7" style="margin-bottom: 10px;">
       <div class="b3g1-container">
         <div>
-          <span class="b3g1-text">Buy 3 Get 1 Free!</span> Colors, Glitters, and Nail Art Designs
+          <span class="b3g1-text">Buy 3 Get 1 Free!</span> Colors, Glitters, and Nail Design Designs
 	      </div>
       </div>
     </div>
@@ -62,7 +65,7 @@ layout: "default"
   <div class="container" style="margin-top: 20px; padding: 20px;">
     <p class="lead">
       Welcome to my catalog of on-hand stock! If you see a set you'd like to purchase, select it.
-      Also make sure to select your free set if doing a B1G1 (French manicure) or B3G1 (colors, glitters, nail art designs).
+      Also make sure to select your free set if doing a B1G1 (French manicure) or B3G1 (colors, glitters, nail design designs).
       When you are done making your selections, click the "I'm done with my selections!" button below.
       Then you'll be asked for your name and e-mail address so I can follow up and get your sets to you ASAP.
     </p>
@@ -85,6 +88,66 @@ layout: "default"
             <input type="submit" name="ItemSearch" value="Search" id="btnSearch" class="btn btn-default">
             <input type="submit" name="ClearCategories" value="Clear All" id="btnClearCategories" class="btn btn-danger">
           </div>
+        </div>
+        <div class="row-fluid">
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="solid">
+            Solids
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="glitter">
+            Glitters
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="fx">
+            Prism FX
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="design">
+            Designs
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="clear">
+            Overlays
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="french">
+            French Manicure
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="petite">
+            Petite
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="pedicure">
+            Pedicure
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="retired">
+            Retired
+          </label>
+        </div>
+        <div class="row-fluid">
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="creme">
+            Creme
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="duochrome">
+            Duochrome
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="glow-in-the-dark">
+            Glow in the dark
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="holographic">
+            Holographic
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="category" value="shimmer">
+            Shimmer
+          </label>
         </div>
       </div>
     </div>
@@ -153,14 +216,14 @@ layout: "default"
    { image: 'baton-rougey.png', categories: 'solid creme pedicure', quantity: 1},
    { image: 'beijing-beauty.png', categories: 'solid creme', quantity: 2},
    { image: 'berry-merry.png', categories: 'design creme', quantity: 1},
-   { image: 'between-the-lines.png', categories: 'art clear', quantity: 1},
+   { image: 'between-the-lines.png', categories: 'design clear', quantity: 1},
    { image: 'blue-in-peru.png', categories: 'solid shimmer duochrome', quantity: 2},
    { image: 'brave-and-bold.png', categories: 'solid shimmer', quantity: 1},
    { image: 'candied-lavender.png', categories: 'glitter clear holographic', quantity: 1},
    { image: 'cannes-fetti.png', categories: 'glitter clear', quantity: 1},
    { image: 'caribbean-coral.png', categories: 'solid creme', quantity: 1},
    { image: 'champagne-sugar.png', categories: 'glitter clear holographic', quantity: 1},
-   { image: 'check-yourself.png', categories: 'art clear', quantity: 1},
+   { image: 'check-yourself.png', categories: 'design clear', quantity: 1},
    { image: 'chelsea-you-later.png', categories: 'glitter', quantity: 1},
    { image: 'chilladelphia.png', categories: 'solid creme', quantity: 1},
    { image: 'clear-as-day.png', categories: 'clear', quantity: 2},
@@ -171,7 +234,7 @@ layout: "default"
    { image: 'czech-me-out.png', categories: 'glitter', quantity: 1},
    { image: 'dallas-darling.png', categories: 'glitter holographic', quantity: 2},
    { image: 'deepwater-opal.png', categories: 'glitter', quantity: 1},
-   { image: 'dripping-in-diamonds.png', categories: 'dipped retired', quantity: 1},
+   { image: 'dripping-in-diamonds.png', categories: 'clear retired', quantity: 1},
    { image: 'evening-sky.png', categories: 'solid shimmer pedicure', quantity: 2},
    { image: 'feathered-friends.png', categories: 'design shimmer', quantity: 1},
    { image: 'feeling-fabboolous.png', categories: 'design glow-in-the-dark', quantity: 1},
@@ -203,18 +266,18 @@ layout: "default"
    { image: 'lavish-lavender.png', categories: 'glitter clear', quantity: 1},
    { image: 'light-the-night.png', categories: 'design glitter', quantity: 1},
    { image: 'london-calling.png', categories: 'solid creme', quantity: 1},
-   { image: 'mermaid-you-look.png', categories: 'art clear', quantity: 1},
+   { image: 'mermaid-you-look.png', categories: 'design clear', quantity: 1},
    { image: 'midnight-in-manhattan.png', categories: 'solid creme', quantity: 1},
    { image: 'midnight-shift.png', categories: 'design glitter', quantity: 2},
    { image: 'mind-matters.png', categories: 'glitter', quantity: 2},
    { image: 'most-definitely.png', categories: 'glitter clear', quantity: 2},
    { image: 'new-york-minute.png', categories: 'solid shimmer', quantity: 1},
    { image: 'night-terror.png', categories: 'glitter holographic', quantity: 1},
-   { image: 'over-the-moon.png', categories: 'dipped', quantity: 2},
+   { image: 'over-the-moon.png', categories: 'clear', quantity: 2},
    { image: 'pink-peppercorn.png', categories: 'glitter clear', quantity: 1, quantity: 1},
-   { image: 'plaid-about-you.png', categories: 'art clear', quantity: 1},
+   { image: 'plaid-about-you.png', categories: 'design clear', quantity: 1},
    { image: 'plaid-reputation.png', categories: 'design glitter', quantity: 1},
-   { image: 'polka-dotcom.png', categories: 'art clear', quantity: 1},
+   { image: 'polka-dotcom.png', categories: 'design clear', quantity: 1},
    { image: 'pop-the-bubbly.png', categories: 'glitter', quantity: 1},
    { image: 'ring-it-in.png', categories: 'design glitter', quantity: 1},
    { image: 'russian-around.png', categories: 'glitter', quantity: 2},
@@ -229,7 +292,7 @@ layout: "default"
    { image: 'snowmans-land.png', categories: 'design shimmer', quantity: 1},
    { image: 'sohover-it.png', categories: 'glitter holographic', quantity: 1},
    { image: 'space-case.png', categories: 'solid shimmer', quantity: 1},
-   { image: 'spot-on.png', categories: 'art clear', quantity: 1},
+   { image: 'spot-on.png', categories: 'design clear', quantity: 1},
    { image: 'a-stones-throw.png', categories: 'design shimmer duochrome', quantity: 1},
    { image: 'strobe-lights.png', categories: 'solid shimmer duochrome', quantity: 1},
    { image: 'swiss-and-tell.png', categories: 'solid creme', quantity: 1},
@@ -239,8 +302,9 @@ layout: "default"
    { image: 'totally-rad.png', categories: 'design creme', quantity: 1},
    { image: 'twilight-hour.png', categories: 'glitter', quantity: 1},
    { image: 'venetian-velvet.png', categories: 'solid shimmer', quantity: 1},
+   { image: 'under-the-mistletoe.png', categories: 'glitter clear', quantity: 1},
    { image: 'undercover.png', categories: 'glitter', quantity: 1},
-   { image: 'web-of-lies.png', categories: 'art clear', quantity: 1},
+   { image: 'web-of-lies.png', categories: 'design clear', quantity: 1},
    { image: 'winter-bowmance.png', categories: 'design glitter', quantity: 1},
    { image: 'wood-you-rather.png', categories: 'solid creme', quantity: 1},
    { image: 'wrap-it-up.png', categories: 'design glitter', quantity: 1},
@@ -325,7 +389,7 @@ layout: "default"
    $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
  });
 
- $('#order-form').submit(function(event) {
+ $('#order-form').submit((event) => {
    event.preventDefault();
    var isSpamBot = $(this).find('input[name=email]').val();
    if (!isSpamBot) {
@@ -335,14 +399,14 @@ layout: "default"
      var form = new FormData(this);
      $.ajax({
        type: 'POST',
-       enctype: 'multipart/form-data',
+       enctype: 'multipdesign/form-data',
        url: 'https://easynailsvip.wufoo.com/forms/stock-order-form',
        data: form,
        processData: false,
        contentType: false,
        cache: false,
        timeout: 800000,
-       error: function() {
+       error: () => {
          $('#view-home').prepend(
            $('<div>')
              .addClass('alert alert-success')
@@ -352,7 +416,7 @@ layout: "default"
          $('#gallery button.btn-primary').removeClass('btn-primary').addClass('btn-secondary').text('Select');
          $('#confirm-selections').modal('hide');
        },
-       success: function() {
+       success: () => {
          $('#view-home').prepend(
            $('<div>')
              .addClass('alert alert-success')
@@ -366,34 +430,54 @@ layout: "default"
    }
  });
 
- $("input#btnSearch").click(function() {
-   // Split the current value of search filter input.
-   var words = $('#txtSearchBox').val().split(' ');
+ function matchesFilterAndCategories(csSet, filterText, categories) {
+   const setCategories = colorStreetSet.className;
+   const setName = colorStreetSet.dataset.setName;
+
+   var showSet = filterText.length === 0 ? null : false;
+   filterText.forEach((filter) => {
+     if (setName.indexOf(filter.toLowerCase()) !== -1) {
+       showSet = true;
+     }
+   });
+   categories.forEach((category) => {
+     const matchesCategory = setCategories.indexOf(category) !== -1;
+     if (matchesCategory && showSet !== false) {
+       showSet = true;
+     } else if (! matchesCategory && showSet === true) {
+       showSet = false;
+     }
+   });
+   return showSet === true;
+ }
+
+ function applyFilters() {
+   var categories = [];
+   $('label.filter-option input[type=checkbox]:checked').each((index, filterOption) => {
+     categories.push(filterOption.value);
+   });
 
    // Gather all gallery sets.
-   var sets = $('#gallery').find('div[data-set-name]');
-   if (words.length === 0) { // Show all sets on empty filter.
+   const sets = $('#gallery').find('div[data-set-name]');
+   const words = $('#txtSearchBox').val().split(' ');
+   if (categories.length === 0 && words.length === 0) { // Show all sets on empty filters.
      sets.show();
      return;
    }
 
    sets.each((index, colorStreetSet) => {
-     var setName = colorStreetSet.dataset.setName;
-     var showSet = false;
-     words.forEach((word) => {
-       if (setName.indexOf(word.toLowerCase()) !== -1) {
-         showSet = true;
-       }
-     });
-     if (showSet) {
+     if (matchesFilterAndCategories(colorStreetSet, words, categories)) {
        $(colorStreetSet).show();
      } else {
        $(colorStreetSet).hide();
      }
    });
- });
- $("input#btnClearCategories").click(function() {
+ }
+
+ $("input#btnSearch").click(applyFilters);
+ $('input#btnClearCategories').click(() => {
    $('#txtSearchBox').val('');
+   $('label.filter-option input[type=checkbox]:checked').each((checkbox) => checkbox.checked = false);
    $('#gallery').find('div[data-set-name]').show();
  });
 </script>
