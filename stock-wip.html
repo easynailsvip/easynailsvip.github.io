@@ -90,6 +90,7 @@ layout: "default"
           </div>
         </div>
         <div class="row-fluid">
+          <em>Category: &nbsp;</em>
           <label class="filter-option">
             <input type="checkbox" name="category" value="solid">
             Solids
@@ -128,6 +129,7 @@ layout: "default"
           </label>
         </div>
         <div class="row-fluid">
+          <em>Finish: &nbsp;</em>
           <label class="filter-option">
             <input type="checkbox" name="category" value="creme">
             Creme
@@ -444,8 +446,6 @@ layout: "default"
      const matchesCategory = setCategories.indexOf(category) !== -1;
      if (matchesCategory && showSet !== false) {
        showSet = true;
-     } else if (! matchesCategory && showSet === true) {
-       showSet = false;
      }
    });
    return showSet === true;
