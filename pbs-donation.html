@@ -1,0 +1,69 @@
+---
+layout: "default"
+---
+
+<div id="view-home" class="container-fluid">
+  <div class="container">
+    <form id="pbs-donation-form">
+      <input name="email" type="hidden">
+      <input type="hidden" id="idstamp" name="idstamp" value="cdX91pGtwyZVx9ET/oHcQi/U3/PR+1NVY/PGI/DzN2Q=" />
+      <fieldset>
+        <legend>Contact Information</legend>
+        <div class="form-group">
+          <label for="first-name">First name</label>
+          <input type="text" class="form-control" id="first-name" name="Field6" placeholder="">
+          <label for="last-name">Last name</label>
+          <input type="text" class="form-control" id="last-name" name="Field7" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="email-address">Email address or cell phone number (so I can email/text an invoice)</label>
+          <input type="email" class="form-control" id="email-address" name="Field1" placeholder="">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>How would you like to donate?</legend>
+        <div class="form-group">
+          <label for="french-manicure">Bundle of 2 French manicure sets</label>
+          <input type="number" class="form-control" id="french-manicure" name="Field3" value="0" min="0" step="1">
+        </div>
+        <div class="form-group">
+          <label for="regular-sets">Bundle of 4 sets (2 solids, 1 glitter, 1 design)</label>
+          <input type="number" class="form-control" id="regular-sets" name="Field4" value="0" min="0" step="1">
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">
+        Send donation request
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="application/javascript">
+ $('#pbs-donation-form').submit(function(event) {
+   event.preventDefault();
+   var isSpamBot = $(this).find('input[name=email]').val();
+   if (!isSpamBot) {
+     // Remove the honey pot from the form.
+     $(this).children('input[name=email]').remove();
+
+     var form = new FormData(this);
+     $.ajax({
+       type: 'POST',
+       enctype: 'multipart/form-data',
+       url: 'https://easynailsvip.wufoo.com/forms/pbs-donation',
+       data: form,
+       processData: false,
+       contentType: false,
+       cache: false,
+       timeout: 800000,
+       error: function() {
+         $('#pbs-donation-form').html('<p class="lead">Thank you! I will send you an email soon to finalize your donation.</p>');
+       },
+       success: function() {
+         $('#pbs-donation-form').html('<p class="lead">Thank you! I will send you an email soon to finalize your donation.</p>');
+       }
+     });
+   }
+ });
+</script>
