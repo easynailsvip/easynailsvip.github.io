@@ -2,8 +2,24 @@
 layout: "default"
 ---
 
+<style type="text/css">
+ body input[type="number"] {
+   -moz-appearance: inherit;
+ }
+ #donation {
+   margin-left: 10px;
+ }
+</style>
+
 <div id="view-home" class="container-fluid">
   <div class="container">
+    <h1 class="page-header">Give the gift of Color Street to Project Beauty Share</h1>
+    <p>
+      <a href="https://projectbeautyshare.org/" target="_blank">Project Beauty Share</a>
+      provides personal hygiene, cosmetics and beauty products to non-profit
+      organizations who serve women and families overcoming abuse, addiction,
+      homelessness and poverty to help restore hope and dignity in their lives.
+    </p>
     <form id="pbs-donation-form">
       <input name="email" type="hidden">
       <input type="hidden" id="idstamp" name="idstamp" value="cdX91pGtwyZVx9ET/oHcQi/U3/PR+1NVY/PGI/DzN2Q=" />
@@ -16,30 +32,43 @@ layout: "default"
           <input type="text" class="form-control" id="last-name" name="Field7" placeholder="">
         </div>
         <div class="form-group">
-          <label for="email-address">Email address or cell phone number (so I can email/text an invoice)</label>
+          <label for="email-address">Email address or cell phone number (so I can email or text an invoice)</label>
           <input type="email" class="form-control" id="email-address" name="Field1" placeholder="">
         </div>
       </fieldset>
       <fieldset>
-        <legend>How would you like to donate?</legend>
+        <legend>Choose your donations.</legend>
+        <p>
+          Color Street offers French manicures, solids, glitters, and designs.
+          French manicures are sold in bundles of two (B1G1). Traditional sets of
+          solids, glitters, and designs are sold in bundles of four (B3G1).
+        </p>
         <div class="form-group">
-          <label for="french-manicure">Bundle of 2 French manicure sets</label>
+          <label for="french-manicure">How many French manicures bundles would you like to donate? Each bundle includes 2 sets.</label>
           <input type="number" class="form-control" id="french-manicure" name="Field3" value="0" min="0" step="1">
         </div>
         <div class="form-group">
-          <label for="regular-sets">Bundle of 4 sets (2 solids, 1 glitter, 1 design)</label>
+          <label for="regular-sets">How many traditional bundles would you like to donate? Each bundle includes 4 sets (2 solids, 1 glitter, and 1 design).</label>
           <input type="number" class="form-control" id="regular-sets" name="Field4" value="0" min="0" step="1">
         </div>
       </fieldset>
       <button class="btn btn-primary" type="submit">
         Send donation request
       </button>
+      <strong id="donation">Donation total: $0</strong>
     </form>
   </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="application/javascript">
+ $('input[type=number]').change(() => {
+   const b1g1 = $('#french-manicure').val();
+   const b3g1 = $('#regular-sets').val();
+   const total = (14 * b1g1) + (36 * b3g1);
+   $('#donation').text('Donation total: $' + total);
+ });
+
  $('#pbs-donation-form').submit(function(event) {
    event.preventDefault();
    var isSpamBot = $(this).find('input[name=email]').val();
