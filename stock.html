@@ -401,17 +401,18 @@ layout: "default"
 
  $('#order-form').submit((event) => {
    event.preventDefault();
-   var isSpamBot = $(this).find('input[name=email]').val();
+   var form = $(this);
+   var isSpamBot = form.find('input[name=email]').val();
    if (!isSpamBot) {
      // Remove the honey pot from the form.
-     $(this).children('input[name=email]').remove();
+     form.children('input[name=email]').remove();
 
-     var form = new FormData($(this));
+     var formData = new FormData(form);
      $.ajax({
        type: 'POST',
        enctype: 'multipdesign/form-data',
        url: 'https://easynailsvip.wufoo.com/forms/stock-order-form',
-       data: form,
+       data: formData,
        processData: false,
        contentType: false,
        cache: false,
