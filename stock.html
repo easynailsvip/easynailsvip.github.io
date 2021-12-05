@@ -401,7 +401,7 @@ layout: "default"
 
  $('#order-form').submit(function(event) {
    event.preventDefault();
-   var isSpamBot = form.find('input[name=email]').val();
+   var isSpamBot = $(this).find('input[name=email]').val();
    if (!isSpamBot) {
      // Remove the honey pot from the form.
      $(this).children('input[name=email]').remove();
