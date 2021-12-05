@@ -406,7 +406,7 @@ layout: "default"
      // Remove the honey pot from the form.
      $(this).children('input[name=email]').remove();
 
-     var form = new FormData(this);
+     var form = new FormData($(this));
      $.ajax({
        type: 'POST',
        enctype: 'multipdesign/form-data',
