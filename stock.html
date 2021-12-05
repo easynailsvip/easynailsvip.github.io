@@ -399,20 +399,19 @@ layout: "default"
    $('#gallery button').removeClass('btn-primary').addClass('btn-secondary').text('Select');
  });
 
- $('#order-form').submit((event) => {
+ $('#order-form').submit(function(event) {
    event.preventDefault();
-   var form = $(this);
    var isSpamBot = form.find('input[name=email]').val();
    if (!isSpamBot) {
      // Remove the honey pot from the form.
-     form.children('input[name=email]').remove();
+     $(this).children('input[name=email]').remove();
 
-     var formData = new FormData(form);
+     var form = new FormData(this);
      $.ajax({
        type: 'POST',
        enctype: 'multipdesign/form-data',
        url: 'https://easynailsvip.wufoo.com/forms/stock-order-form',
-       data: formData,
+       data: form,
        processData: false,
        contentType: false,
        cache: false,
